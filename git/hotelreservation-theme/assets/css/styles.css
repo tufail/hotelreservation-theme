@@ -1,0 +1,391 @@
+/*   
+ * Template Name: Hotel Reservation
+ * Version: 1.0
+ * Author: Tufail Shaikh 
+ * Twitter: @tufailshaikh
+*/
+/* ======= Base ======= */
+body {
+  font-family: 'Lato', sans-serif;
+  color: #666666;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+p {
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+a {
+  color: #5cbbdb;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+a:hover {
+  text-decoration: underline;
+  color: #47b3d7;
+}
+a:focus {
+  text-decoration: none;
+}
+h1,h2,h3,h4,h5,h6{font-family: 'Lato', sans-serif;}
+
+h2{  font-weight: 700; text-align: center; font-size: 30px; letter-spacing: 0.12em; color: #000;display: inline-block;
+  text-align: center;
+  padding: 10px 10px 15px; /* bottom padding should be higher to make up for pseudo border height */
+  background: linear-gradient(90deg, transparent 30%, rgba(186,186,186,1) 30%, rgba(186,186,186,1)70%, transparent 70%);
+  background-size: 100% 1px;
+  background-position: 0% 100%;
+  background-repeat: no-repeat; margin-bottom: 30px;}
+ 
+/*----------------------------------------
+    Pre Loader
+------------------------------------------*/
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+#loader {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  /* Chrome, Opera 15+, Safari 5+ */
+  
+  animation: spin 2s linear infinite;
+  /* Chrome, Firefox 16+, IE 10+, Opera */
+  
+  z-index: 1001;
+}
+#loader-logo {
+  display: block;
+  position: absolute;
+  left: 48%;
+  top: 46%;
+  background: url(../images/user-bg-2.jpg) no-repeat center center;  
+  z-index: 1001;
+}
+#loader:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #e74c3c;
+  -webkit-animation: spin 3s linear infinite;
+  /* Chrome, Opera 15+, Safari 5+ */
+  
+  animation: spin 3s linear infinite;
+  /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+#loader:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #f9c922;
+  -webkit-animation: spin 1.5s linear infinite;
+  /* Chrome, Opera 15+, Safari 5+ */
+  
+  animation: spin 1.5s linear infinite;
+  /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    
+    -ms-transform: rotate(0deg);
+    /* IE 9 */
+    
+    transform: rotate(0deg);
+    /* Firefox 16+, IE 10+, Opera */
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    
+    -ms-transform: rotate(360deg);
+    /* IE 9 */
+    
+    transform: rotate(360deg);
+    /* Firefox 16+, IE 10+, Opera */
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    
+    -ms-transform: rotate(0deg);
+    /* IE 9 */
+    
+    transform: rotate(0deg);
+    /* Firefox 16+, IE 10+, Opera */
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    /* Chrome, Opera 15+, Safari 3.1+ */
+    
+    -ms-transform: rotate(360deg);
+    /* IE 9 */
+    
+    transform: rotate(360deg);
+    /* Firefox 16+, IE 10+, Opera */
+  }
+}
+#loader-wrapper .loader-section {
+  position: fixed;
+  top: 0;
+  width: 51%;
+  height: 100%;
+  background: #222222;
+  z-index: 1000;
+  -webkit-transform: translateX(0);
+  /* Chrome, Opera 15+, Safari 3.1+ */
+  
+  -ms-transform: translateX(0);
+  /* IE 9 */
+  
+  transform: translateX(0);
+  /* Firefox 16+, IE 10+, Opera */
+}
+#loader-wrapper .loader-section.section-left {
+  left: 0;
+}
+#loader-wrapper .loader-section.section-right {
+  right: 0;
+}
+/* Loaded */
+
+.loaded #loader-wrapper .loader-section.section-left {
+  -webkit-transform: translateX(-100%);
+  /* Chrome, Opera 15+, Safari 3.1+ */
+  
+  -ms-transform: translateX(-100%);
+  /* IE 9 */
+  
+  transform: translateX(-100%);
+  /* Firefox 16+, IE 10+, Opera */
+  
+  -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+.loaded #loader-wrapper .loader-section.section-right {
+  -webkit-transform: translateX(100%);
+  /* Chrome, Opera 15+, Safari 3.1+ */
+  
+  -ms-transform: translateX(100%);
+  /* IE 9 */
+  
+  transform: translateX(100%);
+  /* Firefox 16+, IE 10+, Opera */
+  
+  -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+.loaded #loader {
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.loaded #loader-wrapper {
+  visibility: hidden;
+  -webkit-transform: translateY(-100%);
+  /* Chrome, Opera 15+, Safari 3.1+ */
+  
+  -ms-transform: translateY(-100%);
+  /* IE 9 */
+  
+  transform: translateY(-100%);
+  /* Firefox 16+, IE 10+, Opera */
+  
+  -webkit-transition: all 0.3s 1s ease-out;
+  transition: all 0.3s 1s ease-out;
+}
+/* JavaScript Turned Off */
+
+.no-js #loader-wrapper {
+  display: none;
+}
+.progress{
+    background-color: rgba(255, 64, 129, 0.22);
+}
+
+#top-header{ background: #1b2430; padding: 5px 0px; color: #8a9bad; line-height: 26px;}
+#header{ background: #35c3ff; color: #fff; border:none;}
+#header h1.logo { letter-spacing: 0.09em; color:#ffffff; font-size: 24px; font-weight: 300; line-height: 56px; float: left; margin: inherit;}
+#header h1.logo a, #header h1.logo a:hover{color:#ffffff;  text-decoration: none;}
+#header h1.logo span{font-weight: 700;}
+#header.navbar{margin-bottom: 0px; border-radius: 0px;-webkit-box-shadow: 0px 4px 17px -2px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 4px 17px -2px rgba(0,0,0,0.75);
+box-shadow: 0px 4px 17px -2px rgba(0,0,0,0.75);}
+
+.navbar-nav>li>a {
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+ .navbar-toggle, .navbar-nav a{ font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff;}
+ .dropdown-menu a{ text-transform: none;}
+  .header .main-nav a:hover,   .header .main-nav .open a , .dropdown-menu{background: #1b2430; color: #ffffff;}
+.header .main-nav .dropdown-menu a:hover{background: #35c3ff;}
+ .header .main-nav .navbar-toggle .icon-bar {
+    background-color: rgba(255, 255, 255, 0.6);
+    height: 3px;
+}
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+}
+.bg-slider-wrapper {  position:relative; width: 100%;   height: 626px;  background: #595959; }
+ .flexslider {  margin: 0px 0px 0px; padding: 0px; border: 0px;}
+.bg-slider-wrapper .flexslider .slides li{ height: 630px; text-align: center;}
+.bg-slider-wrapper .flexslider .slides li img{max-width: 522px; }
+.bg-slider-wrapper .flexslider .slides .slide-1{background: url('../images/slide1.jpg') no-repeat 50% top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; }
+.bg-slider-wrapper .flexslider .slides .slide-2{background: url('../images/slide2.jpg') no-repeat 50% top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; }
+.bg-slider-wrapper .flexslider .slides .slide-3{background: url('../images/slide3.jpg') no-repeat 50% top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;}
+
+.booking-wrapper{ width: 100%; position: absolute; bottom: -4px; z-index: 5;}
+.booking-wrapper .container{ background: #f0f0f0; padding: 10px; }
+.booking-wrapper .availability-form h3{font-size: 11px; color: #000;}
+.booking-wrapper .availability-form h3 strong{font-size: 18px; display: block;}
+.availability-form input[type="text"]{ width: 100%; height: 40px; padding: 10px; position: relative;}
+.availability-form .group{position: relative; margin-top: 5px; padding: 10px;}
+.availability-form  .add-on{ position: absolute; right: 20px; top:18px; z-index: 4; }
+.availability-form select{ width: 100%; height: 40px;  padding: 0px 0px 0px 10px; position: relative;}
+.top-10{ margin-top: 15px;}
+/* buttons */
+.btn{border-radius: 0px;}
+.btn-primary{border-radius: 0px; background: #35c3ff; color: #fff; border: 0px; padding: 10px 15px;}
+.btn-blueborder{ font-weight: 300; padding: 3px 30px; border: 2px solid #35c3ff; color: #ffffff;}
+.btn-blueborder:hover{ color: #35c3ff;}
+.btn-darkblueborder{ font-weight: 300; padding: 3px 30px; border: 2px solid #062643; color: #062643;}
+.btn-darkblueborder:hover{ color: #35c3ff; background: #062643;}
+ .btn.btn-black{border-radius: 0px;   color: #333; border: 1px solid #333; padding: 5px 15px; font-size: 12px;}
+ .btn-black:hover {
+    border:1px solid #35c3ff; 
+    opacity: .9; 
+    top: -50px; 
+    transition: all 550ms;
+    color: #333;
+  }
+
+  .btn.btn-blackLarge{border-radius: 0px;  color: #333; border: 1px solid #333; letter-spacing: 0.08em; padding: 8px 25px; font-size: 14px; margin-top: 25px;}
+ .btn-blackLarge:hover {
+    border:1px solid #35c3ff; 
+    opacity: .9; 
+    top: -50px; 
+    transition: all 550ms;
+    color: #333;
+  }
+ /* datepicker */
+.ui-datepicker-header {
+  padding:.8em 0;text-align:center;position:relative; background: #062643; border-radius: 0px;
+}
+.ui-datepicker-title span {color:#35c3ff;}
+.ui-datepicker-title select {background:none;border:none;}
+.ui-datepicker-title select option {color:black;}
+.ui-datepicker-prev ,.ui-datepicker-next { color: #35c3ff; background: #35c3ff;
+  position:absolute;width:20px;height:20px;overflow:hidden;
+  left:17%;margin-top:.2em;cursor:pointer;
+}
+.ui-datepicker-next {left:88%; color: #35c3ff;}
+.ui-datepicker-prev:before ,.ui-datepicker-next:before {
+  display:block;height:100%;
+} 
+.ui-datepicker-calendar {width:95%;margin:auto; background: #062643; color: #fff;}
+.ui-datepicker-calendar th ,.ui-datepicker-calendar td a {
+  text-align:center;padding:.4em 0;background:#35c3ff; 
+}
+.ui-datepicker-calendar td a {background:#35c3ff; 
+  display:block;height:100%;border-radius:0px; 
+}
+.ui-datepicker-calendar td {background:#35c3ff; color:#29323f; }
+
+.ui-datepicker-calendar .ui-state-hover {
+  background:#35c3ff; color:#29323f;text-shadow:none;
+}
+.ui-datepicker-calendar .ui-state-active {
+  background:#35c3ff; color:white;
+}
+
+
+.main-content{margin: 50px 0px;}
+.rooms{ padding-top: 50px; text-align: left;}
+.rooms p strong{ font-size: 16px;}
+.rooms img:hover { transition: all 550ms ease-in-out;
+                opacity: 0.8;  }
+.rooms hr{border-bottom: 2px solid #CCC; }
+.rooms h3{display: block; text-align: left; font-size: 18px; letter-spacing: 0.09em; text-transform: uppercase;}
+ 
+.about-wrapper{ background: #eee; padding: 50px 0px;}
+.about-wrapper .bg-white{background: #fff;}
+.padd-30{ padding: 30px;}
+.about-wrapper h3{ line-height: 60px; letter-spacing: 0.09em;}
+.title{text-align: center;}
+.facilities-wrapper{ background: #fff; padding: 50px 0px;}
+.facilities-list{ margin-top: 30px;}
+.facilities-list h3{font-size: 18px; font-weight: 700; letter-spacing: 0.08em; margin-top: 0px;}
+.facilities-list img{margin-bottom: 20px;}
+.facilities-list img:hover { -webkit-opacity: 0.8;
+    -moz-opacity: 0.8;
+    opacity: 0.8; }
+
+.testimonial-wrapper{padding: 50px 0px; background: linear-gradient(rgba(53,195,295,.7), rgba(53,195,295,.7)), url('..//images/bg-testi.jpg') bottom center repeat;  background-size:cover; 
+   background-color: rgb(248, 247, 216);}
+ 
+.testimonial-wrapper  h2{ color:#ffffff; font-weight: 700; text-align: center; font-size: 30px; letter-spacing: 0.12em;  display: inline-block;
+  text-align: center;
+  padding: 10px 10px 15px; /* bottom padding should be higher to make up for pseudo border height */
+  background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,1) 30%, rgba(255,255,255,1)70%, transparent 70%);
+  background-size: 100% 1px;
+  background-position: 0% 100%;
+  background-repeat: no-repeat; margin-bottom: 30px;}
+  .testimonial-wrapper .owl-carousel  div{text-align:center;  color:#fff;}
+  .testimonial-wrapper .owl-carousel  div p{ padding:20px;}
+  .testimonial-wrapper .owl-carousel  div p strong{font-size:18px; letter-spacing:0.08em;}
+  
+ #footer{ background:#0f3556; padding:50px 0px; color:#8a9bad;}
+ #footer h3{color:#ffffff; font-size:18px; text-transform:uppercase; margin-bottom:20px;} 
+ #footer ul{list-style-type:none; padding:0px; margin:0px;}
+  #footer ul li{padding:5px 0px;}
+    #footer  .fa{ padding:10px;}
+	#footer input[type="text"]{background:#062643; padding:10px;  border: 1px solid #8a9bad; margin:0px;}
+	#footer input[type="submit"]{background:#35c3ff; padding:10px; color:#fff; border: 1px solid #35c3ff;margin:0px;}
+	
+.copyright{background:#1b2430; color:#8a9bad; text-align:center; padding:30px 0px;}
+#topcontrol .fa{ z-index: 99999; background: #333; color: #ffffff; padding: 5px 10px; border-radius: 5px; font-size: 22px; }
